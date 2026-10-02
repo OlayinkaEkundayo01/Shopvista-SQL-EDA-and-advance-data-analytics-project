@@ -1,0 +1,101 @@
+
+-- CREATE CUSTOMER INFO TABLE
+CREATE TABLE customer_info(
+	country NVARCHAR(20),
+	state NVARCHAR(20),
+	customer_id NVARCHAR(50),
+	phone NVARCHAR(50),
+	country_code NVARCHAR(5),
+	region NVARCHAR(10)
+)
+
+-- CREATE DATE TABLE
+CREATE TABLE date(
+	date_id NVARCHAR(20),
+	[date] DATE,
+	year SMALLINT,
+	month_name NVARCHAR(15),
+	day_name NVARCHAR(15),
+	is_weekend INT,
+	quarter DATE,
+	week DATE
+)
+
+-- CREATE daily summary TABLE
+CREATE TABLE daily_summary(
+	date_id NVARCHAR(15),
+	currency NVARCHAR(5),
+	total_quantity INT,
+	total_gross_amount INT,
+	total_discount_amount DECIMAL(6,2),
+	total_tax_amount INT,
+	total_amount DECIMAL(15, 7)
+)
+
+-- CREATE TABLE order_items
+CREATE TABLE order_items(
+	date_id NVARCHAR(15),
+	transaction_date DATE,
+	transaction_ts DATETIMEOFFSET,
+	transaction_id INT,
+	customer_id NVARCHAR(50),
+	seq_no INT,
+	product_id BIGINT,
+	channel NVARCHAR(15),
+	coupon_code NVARCHAR(15),
+	coupon_flag INT,
+	unit_price_currency NVARCHAR(5),
+	quantity INT,
+	unit_price INT,
+	gross_amount INT,
+	discount_percent INT,
+	discount_amount DECIMAL(6,2),
+	tax_amount INT,
+	net_amount DECIMAL(6,2)
+)
+
+-- CREATE TABLE order_returns
+CREATE TABLE order_returns(
+	return_ts DATETIMEOFFSET,
+	order_dt DATETIMEOFFSET,
+	order_id INT,
+	reason NVARCHAR(15),
+	processed_time DATETIMEOFFSET,
+	date_id NVARCHAR(15),
+	return_days INT,
+	within_policy INT,
+	is_late_return INT
+)
+
+-- CREATE TABLE order_shipments
+CREATE TABLE order_shipments(
+	order_dt DATETIMEOFFSET,
+	shipment_id NVARCHAR(15),
+	order_id INT,
+	carrier NVARCHAR(15),
+	read_timestamp TIMESTAMP,
+	file_name NVARCHAR(20),
+	file_path NVARCHAR(100),
+	processed_time DATETIMEOFFSET,
+	carrier_group NVARCHAR(20),
+	is_weekend_shipment NVARCHAR(10)
+)
+
+-- CREATE TABLE products
+CREATE TABLE products(
+	product_id INT,
+	sku NVARCHAR(30),
+	category_code NVARCHAR(5),
+	category_name NVARCHAR(20),
+	brand_code NVARCHAR(15),
+	brand_name NVARCHAR(15),
+	color NVARCHAR(10),
+	size NVARCHAR(10),
+	material NVARCHAR(15),
+	weight_grams INT,
+	length_cm DECIMAL(5,2),
+	width_cm DECIMAL(5,2),
+	height_cm DECIMAL(5,2),
+	rating_count INT,
+	file_name NVARCHAR(10)
+)
